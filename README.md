@@ -3,6 +3,7 @@ The project is a React app to display information about Star Wars using the swap
 
 ## Features
 * Display random planet
+* Display loading and error indicators
 
 ## Project Status
 The project in progress
