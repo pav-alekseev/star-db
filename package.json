@@ -1,7 +1,9 @@
 {
   "name": "star-db",
   "version": "0.1.0",
+  "author": "RukkiesMan",
   "private": true,
+  "license": "MIT",
   "dependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
