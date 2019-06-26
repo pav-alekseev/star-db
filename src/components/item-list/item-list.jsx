@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 
 import './item-list.css';
 
-import SwapiService from '../../services/swapi-service';
-import withData from '../hoc-helpers';
-
 const ItemList = ({ data, onItemSelected, children: renderLabel }) => {
   const items = data.map((item) => {
     const label = renderLabel(item);
@@ -31,11 +28,9 @@ const ItemList = ({ data, onItemSelected, children: renderLabel }) => {
 };
 
 ItemList.propTypes = {
-  data: PropTypes.objectOf(PropTypes.shape).isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape).isRequired,
   onItemSelected: PropTypes.func.isRequired,
   children: PropTypes.func.isRequired,
 };
 
-const { getAllPeople } = new SwapiService();
-
-export default withData(ItemList, getAllPeople);
+export default ItemList;
