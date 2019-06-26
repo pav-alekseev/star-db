@@ -116,7 +116,7 @@ ItemView.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const Record = ({ label, field, item }) => (
+export const Record = ({ label, field, item }) => (
   <li className="list-group-item">
     <span className="term">{label}</span>
     <span>{item[field]}</span>
@@ -127,5 +127,3 @@ Record.propTypes = {
   label: PropTypes.string.isRequired,
   field: PropTypes.string.isRequired,
 };
-
-export { Record };
