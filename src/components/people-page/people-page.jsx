@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import SwapiService from '../../services/swapi-service';
 import ItemList from '../item-list';
 import PersonDetails from '../person-details';
-import ErrorIndicator from '../error-indicator';
+import ErrorBoundry from '../error-boundry';
 import Row from '../row';
 
 import './people-page.css';
@@ -21,22 +21,11 @@ export default class PeoplePage extends Component {
     this.swapiService = new SwapiService();
     this.state = {
       selectedPerson: '2',
-      hasError: false,
     };
   }
 
-  componentDidCatch() {
-    this.setState({
-      hasError: true,
-    });
-  }
-
   render() {
-    const { selectedPerson, hasError } = this.state;
-
-    if (hasError) {
-      return <ErrorIndicator />;
-    }
+    const { selectedPerson } = this.state;
 
     const itemList = (
       <ItemList
@@ -48,6 +37,10 @@ export default class PeoplePage extends Component {
 
     const personDetails = <PersonDetails personId={selectedPerson} />;
 
-    return <Row left={itemList} right={personDetails} />;
+    return (
+      <ErrorBoundry>
+        <Row left={itemList} right={personDetails} />
+      </ErrorBoundry>
+    );
   }
 }
