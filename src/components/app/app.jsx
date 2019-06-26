@@ -5,6 +5,8 @@ import RandomPlanet from '../random-planet';
 import PeoplePage from '../people-page';
 import ErrorBoundry from '../error-boundry';
 import ErrorIndicator from '../error-indicator';
+import SwapiService from '../../services/swapi-service';
+import { SwapiServiceProvider } from '../swapi-service-context';
 
 import './app.css';
 
@@ -12,6 +14,7 @@ export default class App extends Component {
   constructor() {
     super();
 
+    this.swapiService = new SwapiService();
     this.state = {
       hasError: false,
     };
@@ -32,16 +35,18 @@ export default class App extends Component {
 
     return (
       <ErrorBoundry>
-        <div>
-          <Header />
-          <div className="container">
-            <div className="my-3">
-              <RandomPlanet />
-            </div>
+        <SwapiServiceProvider value={this.swapiService}>
+          <div>
+            <Header />
+            <div className="container">
+              <div className="my-3">
+                <RandomPlanet />
+              </div>
 
-            <PeoplePage />
+              <PeoplePage />
+            </div>
           </div>
-        </div>
+        </SwapiServiceProvider>
       </ErrorBoundry>
     );
   }
