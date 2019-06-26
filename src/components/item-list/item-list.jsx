@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import SwapiService from '../../services/swapi-service';
-
 import './item-list.css';
 import Spinner from '../spinner';
 
@@ -10,42 +8,48 @@ export default class ItemList extends Component {
   constructor() {
     super();
 
-    this.swapiService = new SwapiService();
     this.state = {
-      peopleList: null,
+      itemList: null,
     };
 
     this.renderItems = (items) => {
-      const { onItemSelected } = this.props;
+      const { onItemSelected, renderItem } = this.props;
 
-      return items.map(({ id, name }) => (
-        <button
-          className="btn btn-primary"
-          key={id}
-          type="button"
-          onClick={() => onItemSelected(id)}
-        >
-          {name}
-        </button>
-      ));
+      return items.map((item) => {
+        const label = renderItem(item);
+        const { id } = item;
+
+        return (
+          <button
+            className="btn btn-primary"
+            key={id}
+            type="button"
+            onClick={() => onItemSelected(id)}
+          >
+            {label}
+          </button>
+        );
+      });
     };
   }
 
   async componentDidMount() {
-    const peopleList = await this.swapiService.getAllPeople();
-    this.setState({ peopleList });
+    const { getData } = this.props;
+
+    const itemList = await getData();
+    this.setState({ itemList });
   }
 
   render() {
-    const { peopleList } = this.state;
+    const { itemList } = this.state;
 
-    if (!peopleList) {
+    if (!itemList) {
       return <Spinner />;
     }
 
     return (
       <div className="btn-group-vertical btn-block" data-toggle="buttons">
-        {this.renderItems(peopleList)}
+        {this.renderItems(itemList)}
       </div>
     );
   }
@@ -53,4 +57,6 @@ export default class ItemList extends Component {
 
 ItemList.propTypes = {
   onItemSelected: PropTypes.func.isRequired,
+  getData: PropTypes.func.isRequired,
+  renderItem: PropTypes.func.isRequired,
 };
