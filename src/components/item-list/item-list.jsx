@@ -1,62 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import './item-list.css';
-import Spinner from '../spinner';
 
-export default class ItemList extends Component {
-  constructor() {
-    super();
+import SwapiService from '../../services/swapi-service';
+import withData from '../hoc-helpers';
 
-    this.state = {
-      itemList: null,
-    };
-
-    this.renderItems = (items) => {
-      const { children: renderItem, onItemSelected } = this.props;
-
-      return items.map((item) => {
-        const label = renderItem(item);
-        const { id } = item;
-
-        return (
-          <button
-            className="btn btn-primary"
-            key={id}
-            type="button"
-            onClick={() => onItemSelected(id)}
-          >
-            {label}
-          </button>
-        );
-      });
-    };
-  }
-
-  async componentDidMount() {
-    const { getData } = this.props;
-
-    const itemList = await getData();
-    this.setState({ itemList });
-  }
-
-  render() {
-    const { itemList } = this.state;
-
-    if (!itemList) {
-      return <Spinner />;
-    }
+const ItemList = ({ data, onItemSelected, children: renderLabel }) => {
+  const items = data.map((item) => {
+    const label = renderLabel(item);
+    const { id } = item;
 
     return (
-      <div className="btn-group-vertical btn-block" data-toggle="buttons">
-        {this.renderItems(itemList)}
-      </div>
+      <button
+        className="btn btn-primary"
+        key={id}
+        type="button"
+        onClick={() => onItemSelected(id)}
+      >
+        {label}
+      </button>
     );
-  }
-}
+  });
+
+  return (
+    <div className="btn-group-vertical btn-block" data-toggle="buttons">
+      {items}
+    </div>
+  );
+};
 
 ItemList.propTypes = {
-  children: PropTypes.func.isRequired,
+  data: PropTypes.objectOf(PropTypes.shape).isRequired,
   onItemSelected: PropTypes.func.isRequired,
-  getData: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired,
 };
+
+const { getAllPeople } = new SwapiService();
+
+export default withData(ItemList, getAllPeople);
