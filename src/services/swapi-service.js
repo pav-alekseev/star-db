@@ -51,7 +51,7 @@ export default class SwapiService {
 
     this.transformPerson = (person) => {
       const {
-        name, gender, birthYear, eyeColor,
+        name, gender, birth_year: birthYear, eye_color: eyeColor,
       } = person;
 
       return {
