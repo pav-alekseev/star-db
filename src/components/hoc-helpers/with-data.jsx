@@ -43,7 +43,7 @@ const withData = View => class extends Component {
     }
 
     if (error) {
-      return <ErrorIndicator />
+      return <ErrorIndicator />;
     }
 
     return (
