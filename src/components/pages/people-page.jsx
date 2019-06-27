@@ -8,7 +8,7 @@ const PeoplePage = ({ history }) => (
   <ErrorBoundry>
     <PersonList
       onItemSelected={
-        itemId => history.push(`/people/${itemId}`)
+        itemId => history.push(itemId)
       }
     />
   </ErrorBoundry>

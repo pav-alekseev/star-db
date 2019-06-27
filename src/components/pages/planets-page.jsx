@@ -8,7 +8,7 @@ const PlanetPage = ({ history }) => (
   <ErrorBoundry>
     <PlanetList
       onItemSelected={
-        itemId => history.push(`/planets/${itemId}`)
+        itemId => history.push(itemId)
       }
     />
   </ErrorBoundry>
