@@ -1,12 +1,5 @@
-import React from 'react';
 import ItemList from '../item-list';
-import { withData, withSwapiService } from '../hoc-helpers';
-
-const withChildFunction = childFunction => Wrapped => props => (
-  <Wrapped {...props}>
-    {childFunction}
-  </Wrapped>
-);
+import { withData, withSwapiService, withChildFunction } from '../hoc-helpers';
 
 const renderNameAndBirthDay = item => `${item.name} (${item.birthYear})`;
 const renderNameAndPopulation = item => `${item.name} (${item.population})`;
