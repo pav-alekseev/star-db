@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import SwapiService from '../../services/swapi-service';
 import { PersonList } from '../sw-components/lists';
 import { PersonDetails } from '../sw-components/index';
 import ErrorBoundry from '../error-boundry';
@@ -18,7 +17,6 @@ export default class PeoplePage extends Component {
       });
     };
 
-    this.swapiService = new SwapiService();
     this.state = {
       selectedItem: '2',
     };
