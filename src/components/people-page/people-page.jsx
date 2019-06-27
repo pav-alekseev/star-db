@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import SwapiService from '../../services/swapi-service';
 import { PersonList } from '../sw-components/lists';
-import { PersonDetails } from '../sw-components/details';
+import { PersonDetails } from '../sw-components/index';
 import ErrorBoundry from '../error-boundry';
 import Row from '../row';
 
