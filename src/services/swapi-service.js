@@ -86,7 +86,7 @@ export default class SwapiService {
 
     this.transformStarship = (starship) => {
       const {
-        name, model, manufacturer, costInCredits, length, crew, passengers, cargoCapacity,
+        name, model, manufacturer, cost_in_credits: costInCredits,
       } = starship;
 
       return {
@@ -95,10 +95,6 @@ export default class SwapiService {
         model,
         manufacturer,
         costInCredits,
-        length,
-        crew,
-        passengers,
-        cargoCapacity,
       };
     };
   }
