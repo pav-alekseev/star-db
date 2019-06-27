@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Spinner from '../spinner';
 
-const withData = (View, getData) => class extends Component {
+const withData = View => class extends Component {
   constructor() {
     super();
 
@@ -11,6 +11,8 @@ const withData = (View, getData) => class extends Component {
   }
 
   async componentDidMount() {
+    const { getData } = this.props;
+
     const data = await getData();
     this.setState({ data });
   }
