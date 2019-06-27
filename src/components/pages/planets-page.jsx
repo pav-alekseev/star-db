@@ -1,40 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import { PlanetList } from '../sw-components/lists';
-import { PlanetDetails } from '../sw-components/index';
 import ErrorBoundry from '../error-boundry';
-import Row from '../row';
 
-export default class PeoplePage extends Component {
-  constructor() {
-    super();
+const PlanetPage = ({ history }) => (
+  <ErrorBoundry>
+    <PlanetList
+      onItemSelected={
+        itemId => history.push(`/planets/${itemId}`)
+      }
+    />
+  </ErrorBoundry>
+);
 
-    this.onItemSelected = (id) => {
-      this.setState({
-        selectedItem: id,
-      });
-    };
-
-    this.state = {
-      selectedItem: '2',
-    };
-  }
-
-  render() {
-    const { selectedItem } = this.state;
-
-    const personList = (
-      <PlanetList onItemSelected={this.onItemSelected} />
-    );
-
-    const personDetails = (
-      <PlanetDetails itemId={selectedItem} />
-    );
-
-    return (
-      <ErrorBoundry>
-        <Row left={personList} right={personDetails} />
-      </ErrorBoundry>
-    );
-  }
-}
+export default withRouter(PlanetPage);
