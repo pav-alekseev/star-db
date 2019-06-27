@@ -90,7 +90,7 @@ const ItemView = ({ item, image, children }) => {
 
   return (
     <div className="row">
-      <div className="col-lg-2 d-flex my-2">
+      <div className="col-md-3 d-flex my-2">
         <img
           className="rounded w-100"
           src={image}
@@ -118,7 +118,7 @@ ItemView.propTypes = {
 
 export const Record = ({ label, field, item }) => (
   <li className="list-group-item">
-    <span className="term">{label}</span>
+    <span className="term font-weight-bold">{`${label}: `}</span>
     <span>{item[field]}</span>
   </li>
 );

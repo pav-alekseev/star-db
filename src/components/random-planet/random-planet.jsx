@@ -78,7 +78,7 @@ const PlanetView = ({ planet }) => {
 
   return (
     <div className="row">
-      <div className="col-lg-2 d-flex my-2">
+      <div className="col-md-3 d-flex my-2">
         <img
           className="rounded my-auto w-100 "
           src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
