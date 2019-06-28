@@ -11,7 +11,7 @@ The project is a React app to display information about Star Wars using the swap
 * Catch errors
 
 ## Project Status
-The project in progress
+Project completed
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
